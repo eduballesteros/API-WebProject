@@ -16,7 +16,7 @@ import com.example.edu.api.servicios.ClubServicio; // Importa el servicio que ma
 
 // Anotación que define este controlador como un controlador REST
 @RestController
-@RequestMapping("/api/clubes") // Define la ruta base para las solicitudes relacionadas con clubes
+@RequestMapping("/api/club") // Define la ruta base para las solicitudes relacionadas con clubes
 public class ClubControlador {
 
     // Inyección de la dependencia del servicio ClubServicio
@@ -54,4 +54,12 @@ public class ClubControlador {
         clubServicio.borrarClub(id);
         return "Club borrado con éxito"; // Devuelve un mensaje de éxito
     }
+    
+    @GetMapping("/helloClub")
+    public String helloClub() {
+        return "Hello, club!";
+    }
+
+    
+   
 }

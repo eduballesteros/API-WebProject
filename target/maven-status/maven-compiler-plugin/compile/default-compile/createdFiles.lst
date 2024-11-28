@@ -1,0 +1,6 @@
+com\example\edu\api\repositorios\ClubRepositorio.class
+com\example\edu\api\servicios\ClubServicio.class
+com\example\edu\api\controladores\ClubControlador.class
+com\example\edu\api\modelos\Club.class
+com\example\edu\api\ApiApplication.class
+com\example\edu\api\dtos\ClubDto.class
