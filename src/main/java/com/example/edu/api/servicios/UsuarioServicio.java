@@ -27,10 +27,14 @@ public class UsuarioServicio {
 	        usuarioRepositorio.save(usuario);  // Guarda el usuario utilizando el repositorio
 	    }
 	    
+	    
+	    
 	 //Obtener todos los usuarios
 	    public List<Usuarios> obtenerTodosUsuarios() {
 	        return usuarioRepositorio.findAll();
 	    }
+	    
+	    
 
 	 //Obetener los datos de un usuario para un loggeo
 	    public Optional<Usuarios> solicitudDatos(String nickUser, String passwordUser, String email) {
@@ -55,10 +59,57 @@ public class UsuarioServicio {
 	                .findFirst();
 	    }
 	    
+	    
+	    
 	 // Método para borrar un usuario de la base de datos dado su ID
 	    public void borrarUsuario(Long idUsuario) {
 	        usuarioRepositorio.deleteById(idUsuario);  // Elimina el club utilizando su ID
 	    }
 	    
+	    
+	    
+	    public Optional<Usuarios> modificarUsuario(String name, String campo, String nuevoValor) {
+	        // Buscar al usuario por su name
+	        Optional<Usuarios> usuarioBD = usuarioRepositorio.findAll().stream()
+	                .peek(u -> logger.info("Comparando con usuario: {}", u.getNameUser()))
+	                .peek(u -> logger.info("Nombre recibido por parámetro: {}", name)) 
+	                .filter(u -> u.getNameUser().equals(name))
+	                .findFirst();
+	        
+	        // Si se encuentra el usuario, se actualiza el campo
+	        if (usuarioBD.isPresent()) {
+	            Usuarios u = usuarioBD.get();
+	            
+	            switch (campo.toLowerCase()) {
+		            case "nickUser":
+	                    u.setNameUser(nuevoValor);
+	                    break;
+	                case "nameuser":
+	                    u.setNameUser(nuevoValor);
+	                    break;
+	                case "passworduser":
+	                    u.setPasswordUser(nuevoValor);
+	                    break;
+	                case "dni":
+	                    u.setDni(nuevoValor);
+	                    break;
+	                case "email":
+	                    u.setEmail(nuevoValor);
+	                    break;
+	                case "address":
+	                    u.setAddress(nuevoValor);
+	                    break;
+	                
+	                default:
+	                    return Optional.empty(); // Si el campo no es válido, devolvemos un Optional vacío
+	            }
+
+	            // Guardar el usuario modificado
+	            usuarioRepositorio.save(u);
+	            return Optional.of(u);  // Devolver el usuario actualizado
+	        }
+
+	        return Optional.empty();  // Si no se encuentra el usuario, devolver un Optional vacío
+	    }
 	    
 }

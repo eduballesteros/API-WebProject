@@ -2,6 +2,7 @@ package com.example.edu.api.controladores;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.edu.api.modelos.Usuarios;
@@ -103,8 +106,28 @@ public class UsuarioControlador {
     
     
     
+    
+    @PutMapping("/modificar")
+    public ResponseEntity<?> modificarUsuario(@RequestParam String name, @RequestParam String campo, @RequestParam String nuevoValor) {
+        // Llamar al servicio para modificar el usuario
+        Optional<Usuarios> usuario = usuarioServicios.modificarUsuario(name, campo, nuevoValor);
+
+        // Si el usuario fue encontrado y modificado
+        if (usuario.isPresent()) {
+            return ResponseEntity.ok(Map.of(
+                "mensaje", "Usuario modificado exitosamente",
+                "usuario", usuario.get()
+            ));
+        } else {
+            // Si no se encuentra el usuario o el campo no es válido
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                 .body(Map.of("mensaje", "Error: No se pudo modificar el usuario"));
+        }
+    }
+}
+    
+    
 
 
     
    
-}
