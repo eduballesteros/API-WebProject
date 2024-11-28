@@ -125,4 +125,13 @@ public class Usuarios {
     public void setIdClub(Long idClub) {
         this.idClub = idClub;
     }
+    
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+               "nickUser='" + nickUser + '\'' +
+               ", passwordUser='" + passwordUser + '\'' +
+               ", email='" + email + '\'' +
+               '}';
+    }
 }
