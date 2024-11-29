@@ -43,6 +43,7 @@ public class UsuarioControlador {
 
     
  //Método que maneja las solicitudes de login de los usuarios
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuarios usuario) {  
 
         // Llama al servicio solicitudDatos para verificar si el usuario existe en la base de datos
