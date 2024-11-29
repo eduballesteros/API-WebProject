@@ -81,8 +81,8 @@ public class UsuarioServicio {
 	            Usuarios u = usuarioBD.get();
 	            
 	            switch (campo.toLowerCase()) {
-		            case "nickUser":
-	                    u.setNameUser(nuevoValor);
+		            case "nickuser":
+	                    u.setNickUser(nuevoValor);
 	                    break;
 	                case "nameuser":
 	                    u.setNameUser(nuevoValor);
@@ -98,6 +98,9 @@ public class UsuarioServicio {
 	                    break;
 	                case "address":
 	                    u.setAddress(nuevoValor);
+	                    break;
+	                case "imguser":
+	                    u.setImgUser(nuevoValor);
 	                    break;
 	                
 	                default:
