@@ -377,7 +377,7 @@ El servicio de clubes maneja toda la lógica relacionada con las operaciones CRU
      }
      ```
    - **Descripción**: Este servicio elimina un club por su ID.
-
+---
   ![image](https://github.com/user-attachments/assets/8066b500-4eb6-422c-890e-7ee49938ed16)
 
 
