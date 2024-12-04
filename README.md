@@ -179,7 +179,204 @@ Este DTO representa la estructura de datos de un **Club**.
 - nickClub: Nickname del club, utilizado para autenticación.
 - passwordClub: Contraseña del club.
 
+# Modelos
+### Campos y Tipos de Datos de los Modelos **Usuario** y **Club**
 
+#### **Modelo Usuario**
+
+| Campo          | Tipo de Dato       | Descripción                                                                 |
+|----------------|--------------------|-----------------------------------------------------------------------------|
+| `idUser`       | `Long`             | Identificador único del usuario (clave primaria). Se genera automáticamente. |
+| `nickUser`     | `String` (50)      | Nombre de usuario único utilizado para la autenticación. (No puede ser nulo) |
+| `nameUser`     | `String` (100)     | Nombre completo del usuario. (No puede ser nulo)                            |
+| `passwordUser` | `String` (255)     | Contraseña del usuario. (No puede ser nulo)                                 |
+| `dni`          | `String` (15)      | Número de identificación único del usuario (DNI). (No puede ser nulo)      |
+| `email`        | `String` (100)     | Correo electrónico único del usuario. (No puede ser nulo)                   |
+| `address`      | `String` (255)     | Dirección del usuario (opcional).                                           |
+| `imgUser`      | `String` (2083)    | Ruta de la imagen del usuario (opcional).                                    |
+| `admin`        | `Boolean`          | Indicador de si el usuario es administrador o no (por defecto `FALSE`).      |
+| `idClub`       | `Long`             | Clave foránea que hace referencia al club al que pertenece el usuario.      |
+
+#### **Modelo Club**
+
+| Campo          | Tipo de Dato       | Descripción                                                                 |
+|----------------|--------------------|-----------------------------------------------------------------------------|
+| `idClub`       | `Long`             | Identificador único del club (clave primaria). Se genera automáticamente.   |
+| `nickClub`     | `String` (50)      | Nombre único del club utilizado para la autenticación. (No puede ser nulo)  |
+| `passwordClub` | `String` (255)     | Contraseña del club para autenticación. (No puede ser nulo)                 |
+
+
+# Servicios de la API
+
+### **Servicio de Usuarios**
+
+El servicio de usuarios maneja toda la lógica relacionada con las operaciones CRUD de la entidad **Usuarios**. Estas operaciones incluyen la creación, actualización, obtención y eliminación de usuarios.
+
+#### **Métodos Disponibles**
+
+1. **Crear Usuario**
+   - **Descripción**: Crea un nuevo usuario en la base de datos.
+   - **Método**: `POST`
+   - **Endpoint**: `/api/usuarios`
+   - **Parámetros**:
+     ```json
+     {
+       "nickUser": "usuario1",
+       "nameUser": "Usuario Uno",
+       "passwordUser": "password123",
+       "email": "usuario@dominio.com"
+     }
+     ```
+   - **Respuesta**:
+     ```json
+     {
+       "idUser": 1,
+       "nickUser": "usuario1",
+       "nameUser": "Usuario Uno",
+       "email": "usuario@dominio.com"
+     }
+     ```
+   - **Descripción**: Este servicio crea un nuevo usuario con los datos proporcionados en la solicitud.
+
+2. **Obtener Todos los Usuarios**
+   - **Descripción**: Obtiene todos los usuarios registrados en la base de datos.
+   - **Método**: `GET`
+   - **Endpoint**: `/api/usuarios`
+   - **Respuesta**:
+     ```json
+     [
+       {
+         "idUser": 1,
+         "nickUser": "usuario1",
+         "nameUser": "Usuario Uno",
+         "email": "usuario@dominio.com"
+       },
+       {
+         "idUser": 2,
+         "nickUser": "usuario2",
+         "nameUser": "Usuario Dos",
+         "email": "usuario2@dominio.com"
+       }
+     ]
+     ```
+   - **Descripción**: Este servicio devuelve una lista de todos los usuarios registrados.
+
+3. **Autenticar Usuario**
+   - **Descripción**: Autentica un usuario utilizando su nickname y contraseña.
+   - **Método**: `POST`
+   - **Endpoint**: `/api/usuarios/authenticate`
+   - **Parámetros**:
+     ```json
+     {
+       "nickUser": "usuario1",
+       "passwordUser": "password123"
+     }
+     ```
+   - **Respuesta**:
+     ```json
+     {
+       "status": "success",
+       "message": "User authenticated successfully."
+     }
+     ```
+   - **Descripción**: Este servicio autentica un usuario validando su nickname y contraseña.
+
+4. **Eliminar Usuario**
+   - **Descripción**: Elimina un usuario de la base de datos.
+   - **Método**: `DELETE`
+   - **Endpoint**: `/api/usuarios/{id}`
+   - **Parámetros**:
+     - `id` (en la URL): ID del usuario a eliminar.
+   - **Respuesta**:
+     ```json
+     {
+       "status": "success",
+       "message": "User deleted successfully."
+     }
+     ```
+   - **Descripción**: Este servicio elimina un usuario identificado por su ID.
+
+---
+
+### **Servicio de Clubes**
+
+El servicio de clubes maneja toda la lógica relacionada con las operaciones CRUD de la entidad **Clubes**. Estas operaciones incluyen la creación, obtención, autenticación y eliminación de clubes.
+
+#### **Métodos Disponibles**
+
+1. **Crear Club**
+   - **Descripción**: Crea un nuevo club en la base de datos.
+   - **Método**: `POST`
+   - **Endpoint**: `/api/clubes`
+   - **Parámetros**:
+     ```json
+     {
+       "nickClub": "club1",
+       "passwordClub": "password123"
+     }
+     ```
+   - **Respuesta**:
+     ```json
+     {
+       "idClub": 1,
+       "nickClub": "club1"
+     }
+     ```
+   - **Descripción**: Este servicio crea un nuevo club con los datos proporcionados.
+
+2. **Obtener Todos los Clubes**
+   - **Descripción**: Obtiene todos los clubes registrados en la base de datos.
+   - **Método**: `GET`
+   - **Endpoint**: `/api/clubes`
+   - **Respuesta**:
+     ```json
+     [
+       {
+         "idClub": 1,
+         "nickClub": "club1"
+       },
+       {
+         "idClub": 2,
+         "nickClub": "club2"
+       }
+     ]
+     ```
+   - **Descripción**: Este servicio devuelve una lista de todos los clubes registrados.
+
+3. **Autenticar Club**
+   - **Descripción**: Autentica un club utilizando su nickname y contraseña.
+   - **Método**: `POST`
+   - **Endpoint**: `/api/clubes/authenticate`
+   - **Parámetros**:
+     ```json
+     {
+       "nickClub": "club1",
+       "passwordClub": "password123"
+     }
+     ```
+   - **Respuesta**:
+     ```json
+     {
+       "status": "success",
+       "message": "Club authenticated successfully."
+     }
+     ```
+   - **Descripción**: Este servicio autentica un club validando su nickname y contraseña.
+
+4. **Eliminar Club**
+   - **Descripción**: Elimina un club de la base de datos.
+   - **Método**: `DELETE`
+   - **Endpoint**: `/api/clubes/{id}`
+   - **Parámetros**:
+     - `id` (en la URL): ID del club a eliminar.
+   - **Respuesta**:
+     ```json
+     {
+       "status": "success",
+       "message": "Club deleted successfully."
+     }
+     ```
+   - **Descripción**: Este servicio elimina un club identificado por su ID.
 
   
 
