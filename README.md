@@ -29,18 +29,18 @@ Si estás utilizando una base de datos (como MySQL o PostgreSQL), asegúrate de 
 ### Ejemplo de configuración para MySQL en application.properties:
 
 properties
-spring.datasource.url=jdbc:mysql://localhost:3306/tu_base_de_datos
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_contraseña
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+-  spring.datasource.url=jdbc:mysql://localhost:3306/tu_base_de_datos
+-  spring.datasource.username=tu_usuario
+-  spring.datasource.password=tu_contraseña
+-  spring.jpa.hibernate.ddl-auto=update
+-  spring.jpa.show-sql=true
 
 ### Construir el Proyecto
 En la terminal, navega hasta el directorio raíz del proyecto y ejecuta el siguiente comando para construir el proyecto con Maven:
 mvn clean install
 
 Después de construir el proyecto, puedes ejecutar la aplicación de Spring Boot con Maven usando el siguiente comando:
-mvn spring-boot:run
+- mvn spring-boot:run 
 Esto iniciará el servidor y la aplicación estará disponible para su uso.
 
 ### Verificar la Ejecución
@@ -48,3 +48,55 @@ Una vez que la aplicación esté en ejecución, deberías ver un mensaje en la t
 
 ### Probar la API
 Ahora puedes probar los endpoints de la API utilizando herramientas como Postman o cURL.
+
+# Controladores
+Esta sección describe los controladores disponibles en la API, sus métodos HTTP, parámetros y las respuestas que devuelven.
+
+## Controlador de Usuarios
+El controlador de Usuarios maneja todas las operaciones relacionadas con la entidad Usuarios. Permite crear, obtener, autenticar y borrar usuarios.
+
+Endpoints
+### 1. Crear Usuario
+- **Método HTTP**: `POST`
+- **Endpoint**: `/api/usuarios`
+- **Descripción**: Crea un nuevo usuario.
+
+#### Cuerpo de la solicitud:
+```json
+[
+{
+  "nickUser": "usuario1",
+  "nameUser": "Usuario Uno",
+  "passwordUser": "password123",
+  "email": "usuario@dominio.com"
+}
+]
+```
+### 2. Obtener Todos los Usuarios
+- **Método HTTP**: `GET`
+- **Endpoint**: `/api/usuarios`
+- **Descripción**: Obtiene la lista de todos los usuarios
+
+### 3. Autenticar Usuario
+- **Método HTTP**: `POST`
+- **Endpoint**: `/api/usuarios/authenticate`
+- **Descripción**: `Autentica a un usuario utilizando su nickname y contraseña.`
+
+
+ #### Cuerpo de la solicitud:
+```json
+
+{
+  "nickUser": "usuario1",
+  "passwordUser": "password123"
+}
+```
+### 4. Borrar Usuario
+- **Método HTTP**: `DELETE`
+- **Endpoint**: `/api/usuarios/{id}`
+- **Descripción**: Elimina un usuario por su ID.
+- **Parámetros**:
+  `id (en la URL): ID del usuario a eliminar.`
+
+  
+
