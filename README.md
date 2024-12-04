@@ -376,7 +376,7 @@ El servicio de clubes maneja toda la lógica relacionada con las operaciones CRU
        "message": "Club deleted successfully."
      }
      ```
-   - **Descripción**: Este servicio elimina un club identificado por su ID.
+   - **Descripción**: Este servicio elimina un club por su ID.
 
   
 
