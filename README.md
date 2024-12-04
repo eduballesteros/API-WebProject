@@ -50,7 +50,7 @@ Una vez que la aplicación esté en ejecución, deberías ver un mensaje en la t
 Ahora puedes probar los endpoints de la API utilizando herramientas como Postman o cURL.
 
 # Controladores
-Esta sección describe los controladores disponibles en la API, sus métodos HTTP, parámetros y las respuestas que devuelven.
+Esta sección describe los controladores disponibles en la API, sus métodos HTTP y los parámetros.
 
 ## Controlador de Usuarios
 El controlador de Usuarios maneja todas las operaciones relacionadas con la entidad Usuarios. Permite crear, obtener, autenticar y borrar usuarios.
@@ -97,6 +97,52 @@ Endpoints
 - **Descripción**: Elimina un usuario por su ID.
 - **Parámetros**:
   `id (en la URL): ID del usuario a eliminar.`
+
+## Controlador de Clubes
+El controlador de Clubes maneja todas las operaciones relacionadas con la entidad Clubes. Permite crear, obtener, autenticar y eliminar clubes.
+
+
+Endpoints
+### 1. Crear Club
+- **Método HTTP**: `POST`
+- **Endpoint**: `/api/clubes`
+- **Descripción**: Crea un nuevo club.
+
+#### Cuerpo de la solicitud:
+```json
+[
+  {
+    "nickClub": "club1",
+    "passwordClub": "password123"
+  }
+]
+```
+### 2. Obtener Todos los Clubes 
+- **Método HTTP**: `GET`
+- **Endpoint**: `/api/clubes`
+- **Descripción**: Obtiene la lista de todos los clubes
+
+### 3. Autenticar Club
+- **Método HTTP**: `POST`
+- **Endpoint**: `/api/clubes/authenticate`
+- **Descripción**: `Autentica a un club utilizando su nickname y contraseña.`
+
+
+ #### Cuerpo de la solicitud:
+```json
+
+{
+   "nickClub": "club1",
+  "passwordClub": "password123"
+}
+```
+### 4. Borrar Club
+- **Método HTTP**: `DELETE`
+- **Endpoint**: `/api/clubes/{id}`
+- **Descripción**: Elimina un club por su ID.
+- **Parámetros**:
+  `id (en la URL): ID del cluv a eliminar.`
+
 
   
 
