@@ -18,7 +18,7 @@ Asegúrate de tener instalados los siguientes componentes:
 ### Clonar el Repositorio
 Si el proyecto está alojado en un repositorio remoto (como GitHub), puedes clonarlo utilizando Git:
 
-git clone <github.com/eduballesteros/API-WebProject>
+git clone github.com/eduballesteros/API-WebProject
 
 ### Verificar la Configuración de Maven
 Asegúrate de que el proyecto contiene el archivo pom.xml en su raíz. Este archivo define todas las dependencias, el ciclo de vida del proyecto y otras configuraciones necesarias.
