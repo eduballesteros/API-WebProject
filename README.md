@@ -20,13 +20,13 @@ Si el proyecto está alojado en un repositorio remoto (como GitHub), puedes clon
 
 git clone <github.com/eduballesteros/API-WebProject>
 
-Verificar la Configuración de Maven
+###Verificar la Configuración de Maven
 Asegúrate de que el proyecto contiene el archivo pom.xml en su raíz. Este archivo define todas las dependencias, el ciclo de vida del proyecto y otras configuraciones necesarias.
 
-Configurar la Base de Datos
+###Configurar la Base de Datos
 Si estás utilizando una base de datos (como MySQL o PostgreSQL), asegúrate de que el archivo application.properties o application.yml esté correctamente configurado.
 
-Ejemplo de configuración para MySQL en application.properties:
+###Ejemplo de configuración para MySQL en application.properties:
 
 properties
 spring.datasource.url=jdbc:mysql://localhost:3306/tu_base_de_datos
@@ -35,7 +35,7 @@ spring.datasource.password=tu_contraseña
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-Construir el Proyecto
+###Construir el Proyecto
 En la terminal, navega hasta el directorio raíz del proyecto y ejecuta el siguiente comando para construir el proyecto con Maven:
 mvn clean install
 
@@ -43,8 +43,8 @@ Después de construir el proyecto, puedes ejecutar la aplicación de Spring Boot
 mvn spring-boot:run
 Esto iniciará el servidor y la aplicación estará disponible para su uso.
 
-Verificar la Ejecución
+###Verificar la Ejecución
 Una vez que la aplicación esté en ejecución, deberías ver un mensaje en la terminal indicando que el servidor está corriendo, normalmente en http://localhost:8080.
 
-Probar la API
+###Probar la API
 Ahora puedes probar los endpoints de la API utilizando herramientas como Postman o cURL.
