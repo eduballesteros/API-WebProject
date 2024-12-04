@@ -143,6 +143,43 @@ Endpoints
 - **Parámetros**:
   `id (en la URL): ID del cluv a eliminar.`
 
+# DTOs (Data Transfer Objects)
+
+### 1. **UsuarioDTO**
+Este DTO representa la estructura de datos de un **Usuario**.
+
+#### Estructura:
+```json
+{
+  "idUser": 1,
+  "nickUser": "usuario1",
+  "nameUser": "Usuario Uno",
+  "passwordUser": "password123",
+  "email": "usuario@dominio.com"
+}
+```
+- idUser: ID único del usuario (generado automáticamente por la base de datos).
+- nickUser: Nickname del usuario, utilizado para autenticación.
+- nameUser: Nombre completo del usuario.
+- passwordUser: Contraseña del usuario.
+- email: Correo electrónico del usuario.
+
+### 2. **ClubDTO**
+Este DTO representa la estructura de datos de un **Club**.
+
+#### Estructura:
+```json
+{
+  "idClub": 1,
+  "nickClub": "club1",
+  "passwordClub": "password123"
+}
+```
+- idClub: ID único del club (generado automáticamente por la base de datos).
+- nickClub: Nickname del club, utilizado para autenticación.
+- passwordClub: Contraseña del club.
+
+
 
   
 
